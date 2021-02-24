@@ -18,6 +18,9 @@ nav {
   align-items: center;
   justify-content: space-around;
 }
+.active{
+  color:green
+}
 
 a {
   text-decoration: none;
