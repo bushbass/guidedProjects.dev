@@ -18,8 +18,9 @@ nav {
   align-items: center;
   justify-content: space-around;
 }
-.active{
-  color:green
+.active {
+  color: purple;
+  font-weight: bold;
 }
 
 a {
