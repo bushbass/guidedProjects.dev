@@ -3,6 +3,7 @@ export default function Home() {
     <div className="home">
       <div>
         <h2>home component</h2>
+        <p>Phase One complete</p>
       </div>
     </div>
   );
