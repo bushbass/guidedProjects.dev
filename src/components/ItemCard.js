@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes, { bool } from 'prop-types';
 
 const CardStyled = styled.div`
   border: 1px solid grey;
@@ -22,6 +23,16 @@ function ItemCard({ item }) {
       <p>{_id} </p>
     </CardStyled>
   );
+
+  ItemCard.PropTypes = {
+    item: string,
+    // imageUrl: string,
+    // name: string,
+    // price: string,
+    // isOnSale: bool,
+    // description: string,
+    // _id: string,
+  };
 }
 
 export default ItemCard;
