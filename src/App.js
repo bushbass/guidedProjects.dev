@@ -1,9 +1,9 @@
 import "./styles.css";
 import Header from "./components/header/Header";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Cart from "./components/Cart";
-import Home from "./components/Home";
-import Deals from "./components/Deals";
+import Cart from "./pages/Cart";
+import Home from "./pages/Home";
+import Deals from "./pages/Deals";
 
 export default function App() {
   return (
