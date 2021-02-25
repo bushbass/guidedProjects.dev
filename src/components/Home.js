@@ -3,7 +3,8 @@ export default function Home() {
     <div className="home">
       <div>
         <h2>home component</h2>
-        <p>Phase One complete</p>
+        <p>Stying mainly just for functionality</p>
+        <p>will start styling for astheics next</p>
       </div>
     </div>
   );
