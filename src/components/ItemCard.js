@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Rating from './Rating';
 
 const CardStyled = styled.div`
   border: 1px solid grey;
@@ -17,7 +18,7 @@ export default function ItemCard({ item }) {
     <CardStyled>
       <img src={imageUrl} alt={name} />
       <p>{name}</p>
-      <p>{avgRating}</p>
+      <Rating stars={avgRating} />
       <p>{price}</p>
       <p>{isOnSale}</p>
       <p>{description}</p>
