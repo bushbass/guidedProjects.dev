@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PropTypes, { bool } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const CardStyled = styled.div`
   border: 1px solid grey;
@@ -11,28 +11,28 @@ const CardStyled = styled.div`
   }
 `;
 
-function ItemCard({ item }) {
-  console.log({ item });
-  const { imageUrl, name, price, isOnSale, description, _id } = item;
+export default function ItemCard({ item }) {
+  const { imageUrl, name, price, isOnSale, description, _id, avgRating } = item;
   return (
     <CardStyled>
-      <img src={imageUrl} alt={name} /> <p>{name}</p>
-      <p> {price}</p>
+      <img src={imageUrl} alt={name} />
+      <p>{name}</p>
+      <p>{avgRating}</p>
+      <p>{price}</p>
       <p>{isOnSale}</p>
       <p>{description}</p>
       <p>{_id} </p>
     </CardStyled>
   );
-
-  ItemCard.PropTypes = {
-    item: string,
-    // imageUrl: string,
-    // name: string,
-    // price: string,
-    // isOnSale: bool,
-    // description: string,
-    // _id: string,
-  };
 }
-
-export default ItemCard;
+ItemCard.propTypes = {
+  item: PropTypes.shape({
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    avgrating: PropTypes.number,
+    isOnSale: PropTypes.bool,
+    description: PropTypes.string,
+    _id: PropTypes.string,
+  }),
+};

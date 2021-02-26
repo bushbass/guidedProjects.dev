@@ -25,7 +25,7 @@ export default function Home() {
       <h2>Home page</h2>
       <HomeContainer>
         {itemList.map((item) => (
-          <ItemCard item={item} />
+          <ItemCard key={item._id} item={item} />
         ))}
         {console.log(itemList)}
       </HomeContainer>
