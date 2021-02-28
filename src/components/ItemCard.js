@@ -1,23 +1,15 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Rating from "./Rating";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Rating from './Rating';
+import { Link } from 'react-router-dom';
 
-const CardStyled = styled.div`
-  padding: 10px;
-  flex-grow: 1;
-  img {
-    height: 200px;
-  }
-`;
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   border: 1px solid grey;
   border-radius: 3px;
   height: 100%;
-  align-items: center;
   button {
     background: orange;
     border: none;
@@ -26,6 +18,16 @@ const CardContainer = styled.div`
     border-radius: 5px;
     color: white;
   }
+`;
+const CardStyled = styled.div`
+  padding: 10px;
+  flex-grow: 1;
+  img {
+    height: 200px;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const OnSale = styled.div`
   background: red;
@@ -62,6 +64,6 @@ ItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string
-  })
+    _id: PropTypes.string,
+  }),
 };
