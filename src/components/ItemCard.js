@@ -1,14 +1,17 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Rating from './Rating';
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Rating from "./Rating";
 
 const CardStyled = styled.div`
   border: 1px solid grey;
   border-radius: 3px;
   padding: 10px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   img {
-    height: 200px;
+    max-width: 150px;
+    height: auto;
   }
 `;
 
@@ -34,6 +37,6 @@ ItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+    _id: PropTypes.string
+  })
 };
