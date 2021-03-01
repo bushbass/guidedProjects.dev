@@ -1,11 +1,21 @@
-import { useParams } from "react-router-dom";
-export default function Item() {
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import IndividualItemCard from '../components/IndividualItemCard';
+
+export default function Item({ itemList }) {
   const { id } = useParams();
+
+  const [individualItem, setIndividualItem] = useState();
+
+  useEffect(() => {
+    const [tempItem] = itemList.filter((item) => item._id === id);
+    setIndividualItem(tempItem);
+  }, [itemList]);
+
   return (
     <div className="item">
       <div>
-        <h2>item component</h2>
-        {id}
+        <IndividualItemCard item={individualItem} />
       </div>
     </div>
   );

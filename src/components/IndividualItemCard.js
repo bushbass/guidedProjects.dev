@@ -37,10 +37,11 @@ const OnSale = styled.div`
   border-radius: 7px;
 `;
 
-export default function ItemCard({ item }) {
-  const { imageUrl, name, price, isOnSale, description, _id, avgRating } = item;
+export default function IndividualItemCard({ item }) {
   return (
     <CardContainer>
+      {console.log(item)}
+      {/* {console.log(imageUrl)}
       <CardStyled>
         <img src={imageUrl} alt={name} />
         <p>{name}</p>
@@ -53,11 +54,11 @@ export default function ItemCard({ item }) {
       <Link to={`/item/${_id}`}>
         {console.log(item)}
         <button>View Item</button>
-      </Link>
+      </Link> */}
     </CardContainer>
   );
 }
-ItemCard.propTypes = {
+IndividualItemCard.propTypes = {
   item: PropTypes.shape({
     imageUrl: PropTypes.string,
     name: PropTypes.string,
