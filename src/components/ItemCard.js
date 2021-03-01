@@ -51,7 +51,6 @@ export default function ItemCard({ item }) {
         <p>{_id} </p>
       </CardStyled>
       <Link to={`/item/${_id}`}>
-        {console.log(item)}
         <button>View Item</button>
       </Link>
     </CardContainer>

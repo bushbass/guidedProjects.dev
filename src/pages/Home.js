@@ -17,7 +17,6 @@ export default function Home({ itemList }) {
         {itemList.map((item) => (
           <ItemCard key={item._id} item={item} />
         ))}
-        {console.log(itemList)}
       </HomeContainer>
     </div>
   );

@@ -40,21 +40,26 @@ const OnSale = styled.div`
 export default function IndividualItemCard({ item }) {
   return (
     <CardContainer>
-      {console.log(item)}
-      {/* {console.log(imageUrl)}
-      <CardStyled>
-        <img src={imageUrl} alt={name} />
-        <p>{name}</p>
-        <Rating stars={avgRating} />
-        <p>${price}</p>
-        {isOnSale && <OnSale>On sale</OnSale>}
-        <p>{description}</p>
-        <p>{_id} </p>
-      </CardStyled>
-      <Link to={`/item/${_id}`}>
-        {console.log(item)}
-        <button>View Item</button>
-      </Link> */}
+      <h2>individual</h2>
+      {item ? (
+        <>
+          <CardStyled>
+            <img src={item.imageUrl} alt={item.name} />
+            <p>{item.name}</p>
+            <Rating stars={item.avgRating} />
+            <p>${item.price}</p>
+            {item.isOnSale && <OnSale>On sale</OnSale>}
+            <p>{item.description}</p>
+            <p>{item._id} </p>
+          </CardStyled>
+          <Link to={`/item/${item._id}`}>
+            {console.log(item)}
+            <button>View Item</button>
+          </Link>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </CardContainer>
   );
 }
