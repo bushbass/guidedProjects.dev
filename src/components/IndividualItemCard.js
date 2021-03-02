@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Rating from './Rating';
@@ -59,6 +60,7 @@ const CardStyled = styled.div`
 
 const OnSale = styled.div`
   background: red;
+
   color: white;
   width: 30%;
   padding: 7px;
@@ -66,6 +68,7 @@ const OnSale = styled.div`
 `;
 
 export default function IndividualItemCard({ item }) {
+  const [inCart, setInCart] = useState(0);
   return (
     <CardContainer>
       {item ? (
@@ -79,11 +82,24 @@ export default function IndividualItemCard({ item }) {
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
-            <p>{item._id} </p>
-            <Link to={`/item/${item._id}`}>
-              {console.log(item)}
-              <button>Add to Cart</button>
-            </Link>
+            <p>
+              Quantity:
+              <span
+                style={{
+                  background: '#cfd7ff',
+                  marginLeft: '20px',
+                  display: 'inline-block',
+                  width: '50px',
+                  textAlign: 'center',
+                  padding: '10px',
+                }}
+              >
+                {inCart}
+              </span>
+            </p>
+            <p>{item.stockCount} in stock </p>
+
+            <button>Add to Cart</button>
           </CardStyled>
         </>
       ) : (
