@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  padding-bottom: 20px;
-  border: 1px solid grey;
-  border-radius: 3px;
-  height: 100%;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   button {
     background: orange;
     border: none;
@@ -19,16 +20,43 @@ const CardContainer = styled.div`
     color: white;
   }
 `;
-const CardStyled = styled.div`
-  padding: 10px;
-  flex-grow: 1;
+const ImageDiv = styled.div`
   img {
-    height: 200px;
+    max-width: 350px;
+    margin: 25px;
   }
+  @media (max-width: 768px) {
+    max-width: 350px;
+    margin: 25px;
+  }
+`;
+const CardStyled = styled.div`
+  margin: 25px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
+  max-width: 300px;
+  .description {
+    border-top: 1px solid gray;
+    width: 100%;
+    padding-top: 15px;
+  }
+  p {
+    text-align: left;
+  }
+  .price {
+    font-weight: bold;
+  }
+  button {
+    background: orange;
+    border: none;
+    padding: 7px;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+  }
 `;
+
 const OnSale = styled.div`
   background: red;
   color: white;
@@ -40,22 +68,23 @@ const OnSale = styled.div`
 export default function IndividualItemCard({ item }) {
   return (
     <CardContainer>
-      <h2>individual</h2>
       {item ? (
         <>
-          <CardStyled>
+          <ImageDiv>
             <img src={item.imageUrl} alt={item.name} />
-            <p>{item.name}</p>
-            <Rating stars={item.avgRating} />
-            <p>${item.price}</p>
+          </ImageDiv>
+          <CardStyled>
+            <h3>{item.name}</h3>
+            <Rating height={'15px'} stars={item.avgRating} />
+            <p className="description">{item.description}</p>
+            <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
-            <p>{item.description}</p>
             <p>{item._id} </p>
+            <Link to={`/item/${item._id}`}>
+              {console.log(item)}
+              <button>Add to Cart</button>
+            </Link>
           </CardStyled>
-          <Link to={`/item/${item._id}`}>
-            {console.log(item)}
-            <button>View Item</button>
-          </Link>
         </>
       ) : (
         <div>Loading...</div>
