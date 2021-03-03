@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Rating from './Rating';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Rating from "./Rating";
+import { Link } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: flex;
@@ -57,7 +57,6 @@ const CardStyled = styled.div`
     color: white;
   }
 `;
-
 const OnSale = styled.div`
   background: red;
 
@@ -69,6 +68,23 @@ const OnSale = styled.div`
 
 export default function IndividualItemCard({ item }) {
   const [inCart, setInCart] = useState(0);
+
+  function decrement() {
+    if (inCart === 0) {
+      setInCart(0);
+    } else {
+      setInCart(inCart - 1);
+    }
+  }
+
+  function increment() {
+    if (inCart === item.stockCount) {
+      alert("not enough stock to add more of this item");
+    } else {
+      setInCart(inCart + 1);
+    }
+  }
+
   return (
     <CardContainer>
       {item ? (
@@ -78,24 +94,51 @@ export default function IndividualItemCard({ item }) {
           </ImageDiv>
           <CardStyled>
             <h3>{item.name}</h3>
-            <Rating height={'15px'} stars={item.avgRating} />
+            <Rating height={"15px"} stars={item.avgRating} />
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>
               Quantity:
               <span
+                onClick={increment}
                 style={{
-                  background: '#cfd7ff',
-                  marginLeft: '20px',
-                  display: 'inline-block',
-                  width: '50px',
-                  textAlign: 'center',
-                  padding: '10px',
+                  background: "#cfd7ff",
+                  marginLeft: "20px",
+                  display: "inline-block",
+                  width: "20px",
+                  textAlign: "center",
+                  padding: "5px"
+                }}
+              >
+                +
+              </span>
+              <span
+                style={{
+                  background: "#cfd7ff",
+                  margin: "0px 20px",
+                  display: "inline-block",
+                  width: "50px",
+                  textAlign: "center",
+                  padding: "10px"
                 }}
               >
                 {inCart}
               </span>
+              <span
+                onClick={decrement}
+                style={{
+                  background: "#cfd7ff",
+
+                  display: "inline-block",
+                  width: "20px",
+                  textAlign: "center",
+                  padding: "5px"
+                }}
+              >
+                -
+              </span>
+              <span onClick={() => setInCart(0)}>remove</span>
             </p>
             <p>{item.stockCount} in stock </p>
 
@@ -116,6 +159,6 @@ IndividualItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+    _id: PropTypes.string
+  })
 };
