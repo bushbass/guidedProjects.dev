@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Rating from "./Rating";
-import { Link } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: flex;
@@ -79,7 +78,7 @@ export default function IndividualItemCard({ item }) {
 
   function increment() {
     if (inCart === item.stockCount) {
-      alert("not enough stock to add more of this item");
+      alert("Error: There is not enough stock to add any more of this item");
     } else {
       setInCart(inCart + 1);
     }
@@ -143,7 +142,7 @@ export default function IndividualItemCard({ item }) {
             <p>{item.stockCount} in stock </p>
 
             <button>Add to Cart</button>
-          </CardStyled>
+          </CardStyled>{" "}
         </>
       ) : (
         <div>Loading...</div>
