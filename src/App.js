@@ -1,9 +1,10 @@
 import "./styles.css";
 import Header from "./components/header/Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Deals from "./pages/Deals";
+import Item from "./pages/Item";
 
 export default function App() {
   return (
@@ -17,6 +18,9 @@ export default function App() {
             </Route>
             <Route path="/cart">
               <Cart />
+            </Route>
+            <Route path="/item/:id">
+              <Item />
             </Route>
             <Route path="/">
               <Home />
