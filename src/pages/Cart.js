@@ -8,14 +8,18 @@ export default function Cart() {
     <div className="cart">
       <div>
         <h2>cart component</h2>
-        {console.log(typeof setCart)}
+
         {console.log('cart is array ?', Array.isArray(cart))}
         {console.log('type of cart', typeof cart)}
         {console.log({ cart })}
       </div>
-      <button onClick={() => setCart([...cart, { id: 4, qty: 5 }])}>
-        Add dumb item
-      </button>
+      {cart.map((item) => (
+        <>
+          <p>{item.id}</p>
+          <p>{item.qty}</p>
+        </>
+      ))}
+      <p>{cart.length} items in cart</p>
     </div>
   );
 }

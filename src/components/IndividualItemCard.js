@@ -1,7 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Rating from "./Rating";
+import { useContext, useState } from 'react';
+import CartContext from '../context/CartContext';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Rating from './Rating';
 
 const CardContainer = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ const OnSale = styled.div`
 `;
 
 export default function IndividualItemCard({ item }) {
+  const { cart, setCart } = useContext(CartContext);
   const [inCart, setInCart] = useState(0);
 
   function decrement() {
@@ -78,14 +80,24 @@ export default function IndividualItemCard({ item }) {
 
   function increment() {
     if (inCart === item.stockCount) {
-      alert("Error: There is not enough stock to add any more of this item");
+      alert('Error: There is not enough stock to add any more of this item');
     } else {
       setInCart(inCart + 1);
+    }
+  }
+  function addToCart(itemId) {
+    var result = cart.find((obj) => {
+      return obj.id === itemId;
+    });
+    console.log({ result });
+    if (result === undefined) {
+      setCart([...cart, { id: itemId, qty: 1 }]);
     }
   }
 
   return (
     <CardContainer>
+      {console.log(item)}
       {item ? (
         <>
           <ImageDiv>
@@ -93,7 +105,7 @@ export default function IndividualItemCard({ item }) {
           </ImageDiv>
           <CardStyled>
             <h3>{item.name}</h3>
-            <Rating height={"15px"} stars={item.avgRating} />
+            <Rating height={'15px'} stars={item.avgRating} />
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
@@ -102,24 +114,24 @@ export default function IndividualItemCard({ item }) {
               <span
                 onClick={increment}
                 style={{
-                  background: "#cfd7ff",
-                  marginLeft: "20px",
-                  display: "inline-block",
-                  width: "20px",
-                  textAlign: "center",
-                  padding: "5px"
+                  background: '#cfd7ff',
+                  marginLeft: '20px',
+                  display: 'inline-block',
+                  width: '20px',
+                  textAlign: 'center',
+                  padding: '5px',
                 }}
               >
                 +
               </span>
               <span
                 style={{
-                  background: "#cfd7ff",
-                  margin: "0px 20px",
-                  display: "inline-block",
-                  width: "50px",
-                  textAlign: "center",
-                  padding: "10px"
+                  background: '#cfd7ff',
+                  margin: '0px 20px',
+                  display: 'inline-block',
+                  width: '50px',
+                  textAlign: 'center',
+                  padding: '10px',
                 }}
               >
                 {inCart}
@@ -127,12 +139,12 @@ export default function IndividualItemCard({ item }) {
               <span
                 onClick={decrement}
                 style={{
-                  background: "#cfd7ff",
+                  background: '#cfd7ff',
 
-                  display: "inline-block",
-                  width: "20px",
-                  textAlign: "center",
-                  padding: "5px"
+                  display: 'inline-block',
+                  width: '20px',
+                  textAlign: 'center',
+                  padding: '5px',
                 }}
               >
                 -
@@ -141,8 +153,10 @@ export default function IndividualItemCard({ item }) {
             </p>
             <p>{item.stockCount} in stock </p>
 
-            <button>Add to Cart</button>
-          </CardStyled>{" "}
+            <button onClick={(itemId) => addToCart(item._id)}>
+              Add to Cart
+            </button>
+          </CardStyled>
         </>
       ) : (
         <div>Loading...</div>
@@ -158,6 +172,6 @@ IndividualItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string
-  })
+    _id: PropTypes.string,
+  }),
 };

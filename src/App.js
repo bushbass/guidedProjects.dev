@@ -15,10 +15,7 @@ export default function App() {
       .then((data) => setitemList(data.items));
   }, []);
   const [itemList, setitemList] = useState([]);
-  const [cart, setCart] = useState([
-    { id: 1, qty: 1 },
-    { id: 2, qty: 2 },
-  ]);
+  const [cart, setCart] = useState([]);
   return (
     <div className="App">
       <CartContext.Provider value={{ cart, setCart }}>
