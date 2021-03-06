@@ -86,13 +86,15 @@ export default function IndividualItemCard({ item }) {
     }
   }
   function addToCart(itemId) {
-    var result = cart.find((obj) => {
-      return obj.id === itemId;
-    });
-    console.log({ result });
-    if (result === undefined) {
-      setCart([...cart, { id: itemId, qty: 1 }]);
-    }
+    setCart([...cart, itemId]);
+
+    // var result = cart.find((obj) => {
+    //   return obj.id === itemId;
+    // });
+    // console.log({ result });
+    // if (result === undefined) {
+    //   setCart([...cart, { id: itemId, qty: 1 }]);
+    // }
   }
 
   return (

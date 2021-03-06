@@ -16,9 +16,24 @@ export default function App() {
   }, []);
   const [itemList, setitemList] = useState([]);
   const [cart, setCart] = useState([]);
+
+  function addItemToCart(itemId, qty) {
+    const foundItem = cart.find((item) => itemId === item.id);
+    console.log({ foundItem });
+    // console.log({ index });
+    if (foundItem !== 'undefined') {
+      const index = cart.indexOf(foundItem);
+      const cutItem = cart.splice(index, 1);
+      console.log({ cutItem });
+      const newQty = cutItem[0].qty + qty;
+      console.log({ newQty });
+    }
+    setCart([...cart, { id: itemId, qty }]);
+  }
+
   return (
     <div className="App">
-      <CartContext.Provider value={{ cart, setCart }}>
+      <CartContext.Provider value={{ cart, setCart, addItemToCart }}>
         <Router>
           <div>
             <Header />
