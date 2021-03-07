@@ -18,16 +18,19 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   function addItemToCart(itemId, qty) {
-    const foundItem = cart.find((item) => itemId === item.id);
-    console.log({ foundItem });
-    // console.log({ index });
-    if (foundItem !== 'undefined') {
-      const index = cart.indexOf(foundItem);
-      const cutItem = cart.splice(index, 1);
-      console.log({ cutItem });
-      const newQty = cutItem[0].qty + qty;
-      console.log({ newQty });
-    }
+    // const foundItem = cart.find((item) => itemId === item.id);
+    // console.log({ foundItem });
+    // // console.log({ index });
+    // if (foundItem !== 'undefined') {
+    //   const index = cart.indexOf(foundItem);
+    //   const cutItem = cart.splice(index, 1);
+    //   console.log({ cutItem });
+    //   const newQty = cutItem[0].qty + qty;
+    //   console.log({ newQty });
+    // }
+    // setCart([...cart, { id: itemId, qty }]);
+    const filteredCart = cart.filter((item) => item.id === itemId);
+    console.log({ filteredCart });
     setCart([...cart, { id: itemId, qty }]);
   }
 

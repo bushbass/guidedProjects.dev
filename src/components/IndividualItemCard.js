@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../context/CartContext';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -70,6 +70,20 @@ export default function IndividualItemCard({ item }) {
   const { cart, setCart } = useContext(CartContext);
   const [inCart, setInCart] = useState(0);
 
+  useEffect(() => {
+    //get individual items for page from cart
+    const filteredCart = cart.filter((cartItem) => cartItem.id === item?._id);
+    console.log({ filteredCart });
+    //
+
+    setInCart(
+      filteredCart.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.qty,
+        0
+      )
+    );
+  }, [cart]);
+
   function decrement() {
     if (inCart === 0) {
       setInCart(0);
@@ -85,21 +99,14 @@ export default function IndividualItemCard({ item }) {
       setInCart(inCart + 1);
     }
   }
-  function addToCart(itemId) {
-    setCart([...cart, itemId]);
 
-    // var result = cart.find((obj) => {
-    //   return obj.id === itemId;
-    // });
-    // console.log({ result });
-    // if (result === undefined) {
-    //   setCart([...cart, { id: itemId, qty: 1 }]);
-    // }
+  function addToCart(itemId) {
+    setCart([...cart, { id: itemId, qty: 1 }]);
   }
 
   return (
     <CardContainer>
-      {console.log(item)}
+      {/* {console.log({ 'individual page item': item })} */}
       {item ? (
         <>
           <ImageDiv>
