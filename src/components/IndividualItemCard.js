@@ -70,36 +70,8 @@ export default function IndividualItemCard({ item }) {
   const { cart, setCart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
 
-  useEffect(() => {
-    //get individual items for page from cart
-    const filteredCart = cart.filter((cartItem) => cartItem.id === item?._id);
-    console.log({ filteredCart });
-    // return array of just this items objects, each have more than one qty
+ 
 
-    //takes filtered cart and reduces all qty to one value then uses that to set 'inPageCart'
-    setInPageCart(
-      filteredCart.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.qty,
-        0
-      )
-    );
-  }, [cart]);
-
-  function decrement() {
-    if (inPageCart === 0) {
-      setInPageCart(0);
-    } else {
-      setInPageCart(inPageCart - 1);
-    }
-  }
-
-  function increment() {
-    if (inPageCart === item.stockCount) {
-      alert('Error: There is not enough stock to add any more of this item');
-    } else {
-      setInPageCart(inPageCart + 1);
-    }
-  }
 
   function addToCart(itemId) {
     setCart([...cart, { id: itemId, qty: 1 }]);
@@ -107,8 +79,6 @@ export default function IndividualItemCard({ item }) {
 
   return (
     <CardContainer>
-      {/* {console.log({ 'individual page item': item })} */}
-      {console.log({ inPageCart })}
       {item ? (
         <>
           <ImageDiv>
@@ -120,48 +90,7 @@ export default function IndividualItemCard({ item }) {
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
-            <p>
-              Quantity:
-              <span
-                onClick={increment}
-                style={{
-                  background: '#cfd7ff',
-                  marginLeft: '20px',
-                  display: 'inline-block',
-                  width: '20px',
-                  textAlign: 'center',
-                  padding: '5px',
-                }}
-              >
-                +
-              </span>
-              <span
-                style={{
-                  background: '#cfd7ff',
-                  margin: '0px 20px',
-                  display: 'inline-block',
-                  width: '50px',
-                  textAlign: 'center',
-                  padding: '10px',
-                }}
-              >
-                {inPageCart}
-              </span>
-              <span
-                onClick={decrement}
-                style={{
-                  background: '#cfd7ff',
-
-                  display: 'inline-block',
-                  width: '20px',
-                  textAlign: 'center',
-                  padding: '5px',
-                }}
-              >
-                -
-              </span>
-              <span onClick={() => setInPageCart(0)}>remove</span>
-            </p>
+            <p>Already in cart: {inPageCart}</p>
             <p>{item.stockCount} in stock </p>
 
             <button onClick={(itemId) => addToCart(item._id)}>

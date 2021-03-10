@@ -16,27 +16,29 @@ export default function App() {
   }, []);
   const [itemList, setitemList] = useState([]);
   const [cart, setCart] = useState([]);
+  const [combinedCart, setCombinedCart] = useState({})
 
   function addItemToCart(itemId, qty) {
-    // const foundItem = cart.find((item) => itemId === item.id);
-    // console.log({ foundItem });
-    // // console.log({ index });
-    // if (foundItem !== 'undefined') {
-    //   const index = cart.indexOf(foundItem);
-    //   const cutItem = cart.splice(index, 1);
-    //   console.log({ cutItem });
-    //   const newQty = cutItem[0].qty + qty;
-    //   console.log({ newQty });
-    // }
-    // setCart([...cart, { id: itemId, qty }]);
-    const filteredCart = cart.filter((item) => item.id === itemId);
-    console.log({ filteredCart });
     setCart([...cart, { id: itemId, qty }]);
   }
+useEffect(() => {
+  const tempCombinedCart = {}
+  
+    cart.forEach(item => {
+      if (!tempCombinedCart.hasOwnProperty(item.id)) {
+        tempCombinedCart[item.id] = item.qty
+      }
+      else {
+        tempCombinedCart[item.id] = tempCombinedCart[item.id] + item.qty
+      }
+    })
+  setCombinedCart(tempCombinedCart)
+}, [cart])
+  
 
   return (
     <div className="App">
-      <CartContext.Provider value={{ cart, setCart, addItemToCart }}>
+      <CartContext.Provider value={{ cart,combinedCart, setCart, addItemToCart }}>
         <Router>
           <div>
             <Header />

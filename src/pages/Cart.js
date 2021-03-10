@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import CartContext from '../context/CartContext';
 export default function Cart() {
-  const { cart, setCart, addItemToCart } = useContext(CartContext);
+  const { cart, setCart, addItemToCart, combinedCart } = useContext(CartContext);
 
   return (
     <div className="cart">
@@ -15,6 +15,7 @@ export default function Cart() {
           <p>{item.qty}</p>
         </>
       ))}
+      {console.log({combinedCart})}
       <p>{cart.length} items in cart</p>
       <button onClick={() => addItemToCart(7, 7)}>add</button>
     </div>
