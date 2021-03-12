@@ -38,7 +38,7 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <CartContext.Provider value={{ cart,combinedCart, setCart, addItemToCart }}>
+      <CartContext.Provider value={{ cart,combinedCart, setCart, addItemToCart, itemList }}>
         <Router>
           <div>
             <Header />
