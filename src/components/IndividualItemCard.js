@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import CartContext from '../context/CartContext';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Rating from './Rating';
+import { useContext, useState } from "react";
+import CartContext from "../context/CartContext";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Rating from "./Rating";
 
 const CardContainer = styled.div`
   display: flex;
@@ -67,18 +67,12 @@ const OnSale = styled.div`
 `;
 
 export default function IndividualItemCard({ item }) {
-  const { cart, setCart } = useContext(CartContext);
+  const { addItemToCart, cart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
-
- 
-
-
-  function addToCart(itemId) {
-    setCart([...cart, { id: itemId, qty: 1 }]);
-  }
 
   return (
     <CardContainer>
+      {console.log("i page cart", cart)}
       {item ? (
         <>
           <ImageDiv>
@@ -86,14 +80,22 @@ export default function IndividualItemCard({ item }) {
           </ImageDiv>
           <CardStyled>
             <h3>{item.name}</h3>
-            <Rating height={'15px'} stars={item.avgRating} />
+            <Rating height={"15px"} stars={item.avgRating} />
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
             <p>{item.stockCount} in stock </p>
-
-            <button onClick={(itemId) => addToCart(item._id)}>
+            {console.log(item._id, item.name)}
+            <button
+              onClick={() =>
+                addItemToCart({
+                  id: item._id,
+                  productName: item.name,
+                  qty: 1
+                })
+              }
+            >
               Add to Cart
             </button>
           </CardStyled>
@@ -112,6 +114,6 @@ IndividualItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+    _id: PropTypes.string
+  })
 };
