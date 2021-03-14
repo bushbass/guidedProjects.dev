@@ -72,7 +72,6 @@ export default function IndividualItemCard({ item }) {
 
   return (
     <CardContainer>
-      {console.log("i page cart", cart)}
       {item ? (
         <>
           <ImageDiv>
@@ -86,7 +85,6 @@ export default function IndividualItemCard({ item }) {
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
             <p>{item.stockCount} in stock </p>
-            {console.log(item._id, item.name)}
             <button
               onClick={() =>
                 addItemToCart({

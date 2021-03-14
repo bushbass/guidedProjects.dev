@@ -22,18 +22,16 @@ export default function App() {
   }, [cart]);
 
   function addItemToCart(newItem) {
-    console.log("new item", newItem);
-    console.log("cart", cart);
+   
     //empty cart, cart does not have item, cart has item
     if (cart.length === 0) {
       setCart([...cart, newItem]);
-      console.log("empty cart", Array.isArray(cart));
     }
     const isFound = cart.find((cart) => cart.id === newItem.id);
     if (!isFound) {
       setCart([...cart, newItem]);
     } else {
-      console.log(cart);
+     
       setCart(
         cart.map((obj) =>
           obj.id === newItem.id ? { ...obj, qty: obj.qty + newItem.qty } : obj
