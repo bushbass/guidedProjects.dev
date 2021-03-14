@@ -10,11 +10,10 @@ export default function Cart() {
         {console.log({ cart })}
       </div>
       {cart.map((item) => (
-        <>
-          {console.log({ item })}
-          {/* <p>Item number: {item}</p>
-          <p>Quantity: {item}</p> */}
-        </>
+        <div key={item.id}>
+          <p>Product Name: {item.productName}</p>
+          <p>Quantity: {item.qty}</p>
+        </div>
       ))}
       <p>{cart.length} items in cart</p>
     </div>

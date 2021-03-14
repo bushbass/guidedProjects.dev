@@ -15,9 +15,7 @@ export default function App() {
       .then((data) => setitemList(data.items));
   }, []);
   const [itemList, setitemList] = useState([]);
-  const [cart, setCart] = useState([
-    { id: "5fbfff7d58aa65167efb52b9", productName: "Bag Pipes", qty: 1 }
-  ]);
+  const [cart, setCart] = useState([]);
 
   function addItemToCart(newItem) {
     console.log("new item", newItem);
@@ -26,6 +24,17 @@ export default function App() {
     if (cart.length === 0) {
       setCart([...cart, newItem]);
       console.log("empty cart", Array.isArray(cart));
+    }
+    const isFound = cart.find((cart) => cart.id === newItem.id);
+    if (!isFound) {
+      setCart([...cart, newItem]);
+    } else {
+      console.log(cart);
+      setCart(
+        cart.map((obj) =>
+          obj.id === newItem.id ? { ...obj, qty: obj.qty + newItem.qty } : obj
+        )
+      );
     }
   }
 
