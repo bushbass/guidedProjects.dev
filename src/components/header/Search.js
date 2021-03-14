@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const SearchBar = styled.div`
   background: gray;
-
   padding: 10px;
   display: flex;
   flex-direction: column;
