@@ -8,7 +8,6 @@
 }
 header {
   background: #173d55;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

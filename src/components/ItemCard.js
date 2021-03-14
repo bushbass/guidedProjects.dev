@@ -44,11 +44,10 @@ export default function ItemCard({ item }) {
       <CardStyled>
         <img src={imageUrl} alt={name} />
         <p>{name}</p>
-        <Rating stars={avgRating} />
+        <Rating height={'30px'} stars={avgRating} />
         <p>${price}</p>
         {isOnSale && <OnSale>On sale</OnSale>}
         <p>{description}</p>
-        <p>{_id} </p>
       </CardStyled>
       <Link to={`/item/${_id}`}>
         <button>View Item</button>

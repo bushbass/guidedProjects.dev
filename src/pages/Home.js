@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import ItemCard from '../components/ItemCard';
+import styled from "styled-components";
+import ItemCard from "../components/ItemCard";
 
 const HomeContainer = styled.div`
   display: grid;
@@ -10,15 +9,7 @@ const HomeContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
 `;
 
-export default function Home() {
-  useEffect(() => {
-    fetch('https://gp-super-store-api.herokuapp.com/item/list')
-      .then((res) => res.json())
-      .then((data) => setitemList(data.items));
-  }, []);
-
-  const [itemList, setitemList] = useState([]);
-
+export default function Home({ itemList }) {
   return (
     <div className="home">
       <h2>Home page!</h2>
@@ -26,7 +17,6 @@ export default function Home() {
         {itemList.map((item) => (
           <ItemCard key={item._id} item={item} />
         ))}
-        {console.log(itemList)}
       </HomeContainer>
     </div>
   );
