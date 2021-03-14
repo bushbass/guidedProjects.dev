@@ -16,6 +16,10 @@ export default function App() {
   }, []);
   const [itemList, setitemList] = useState([]);
   const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  useEffect(() => {
+    setCartTotal(getTotalCartItems(cart));
+  }, [cart]);
 
   function addItemToCart(newItem) {
     console.log("new item", newItem);
@@ -37,10 +41,17 @@ export default function App() {
       );
     }
   }
+  function getTotalCartItems(cart) {
+    return cart.reduce((accum, current) => {
+      return accum + current.qty;
+    }, 0);
+  }
 
   return (
     <div className="App">
-      <CartContext.Provider value={{ cart, setCart, addItemToCart, itemList }}>
+      <CartContext.Provider
+        value={{ cart, setCart, cartTotal, addItemToCart, itemList }}
+      >
         <Router>
           <div>
             <Header />

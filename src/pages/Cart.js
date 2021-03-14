@@ -1,7 +1,14 @@
 import { useContext } from "react";
+import styled from "styled-components";
 import CartContext from "../context/CartContext";
+
+const ProductRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
 export default function Cart() {
-  const { cart } = useContext(CartContext);
+  const { cart, cartTotal } = useContext(CartContext);
 
   return (
     <div className="cart">
@@ -10,12 +17,13 @@ export default function Cart() {
         {console.log({ cart })}
       </div>
       {cart.map((item) => (
-        <div key={item.id}>
-          <p>Product Name: {item.productName}</p>
-          <p>Quantity: {item.qty}</p>
-        </div>
+        <ProductRow key={item.id}>
+          <div className="pName">Product Name: {item.productName}</div>
+          <div className="qtyName">Quantity:</div>
+          <div className="qty"> {item.qty}</div>
+        </ProductRow>
       ))}
-      <p>{cart.length} items in cart</p>
+      <p>{cartTotal} total items in cart</p>
     </div>
   );
 }
