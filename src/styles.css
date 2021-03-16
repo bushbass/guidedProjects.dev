@@ -30,8 +30,8 @@ a {
   transition: 0.5s;
 }
 a:hover {
-  transform: translate(2px, 2px);
-  transition: 0.5s;
+  transform: translate(1px, 1px);
+  transition: 0.2s;
 }
 .home {
   display: flex;

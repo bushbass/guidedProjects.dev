@@ -10,7 +10,7 @@ export default function Header() {
           <h1 className="logo">✨✨SuperStore✨✨</h1>
         </Link>
         <Nav />
-      </header>{' '}
+      </header>
       <Search />
     </>
   );

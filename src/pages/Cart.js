@@ -12,9 +12,9 @@ const CartContainer = styled.div`
 `;
 const ProductRow = styled.div`
   display: grid;
-  max-width: 750px;
+  max-width: 500px;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   border: 1px solid grey;
   padding: 15px;
   .pName {
@@ -33,10 +33,13 @@ export default function Cart() {
       <div>
         <h2>cart component</h2>
       </div>
+      <ProductRow className="productRow">
+        <div className="pName">Product Name</div>
+        <div className="qty">Quantity</div>
+      </ProductRow>
       {cart.map((item) => (
         <ProductRow className="productRow" key={item.id}>
-          <div className="pName">Product Name: {item.productName}</div>
-          <div className="qtyName">Quantity:</div>
+          <div className="pName">{item.productName}</div>
           <div className="qty"> {item.qty}</div>
         </ProductRow>
       ))}

@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import CartContext from "../context/CartContext";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Rating from "./Rating";
+import { useContext, useState } from 'react';
+import CartContext from '../context/CartContext';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Rating from './Rating';
 
 const CardContainer = styled.div`
   display: flex;
@@ -56,6 +56,10 @@ const CardStyled = styled.div`
     border-radius: 5px;
     color: white;
   }
+  button:active {
+    transform: translate(1px, 1px);
+    transition: 0.1s;
+  }
 `;
 const OnSale = styled.div`
   background: red;
@@ -79,7 +83,7 @@ export default function IndividualItemCard({ item }) {
           </ImageDiv>
           <CardStyled>
             <h3>{item.name}</h3>
-            <Rating height={"15px"} stars={item.avgRating} />
+            <Rating height={'15px'} stars={item.avgRating} />
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
@@ -90,7 +94,7 @@ export default function IndividualItemCard({ item }) {
                 addItemToCart({
                   id: item._id,
                   productName: item.name,
-                  qty: 1
+                  qty: 1,
                 })
               }
             >
@@ -112,6 +116,6 @@ IndividualItemCard.propTypes = {
     avgrating: PropTypes.number,
     isOnSale: PropTypes.bool,
     description: PropTypes.string,
-    _id: PropTypes.string
-  })
+    _id: PropTypes.string,
+  }),
 };
