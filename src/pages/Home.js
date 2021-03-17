@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import ItemCard from "../components/ItemCard";
+import styled from 'styled-components';
+import ItemCard from '../components/ItemCard';
 
 const HomeContainer = styled.div`
   display: grid;

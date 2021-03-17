@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import "./styles.css";
-import CartContext from "./context/CartContext";
-import Header from "./components/header/Header";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Cart from "./pages/Cart";
-import Home from "./pages/Home";
-import Deals from "./pages/Deals";
-import Item from "./pages/Item";
+import { useEffect, useState } from 'react';
+import './styles.css';
+import CartContext from './context/CartContext';
+import Header from './components/header/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Cart from './pages/Cart';
+import Home from './pages/Home';
+import Deals from './pages/Deals';
+import Item from './pages/Item';
 
 export default function App() {
   useEffect(() => {
-    fetch("https://gp-super-store-api.herokuapp.com/item/list")
+    fetch('https://gp-super-store-api.herokuapp.com/item/list')
       .then((res) => res.json())
       .then((data) => setitemList(data.items));
   }, []);
@@ -22,19 +22,17 @@ export default function App() {
   }, [cart]);
 
   function addItemToCart(newItem) {
-   
     //empty cart, cart does not have item, cart has item
     if (cart.length === 0) {
       setCart([...cart, newItem]);
     }
-    const isFound = cart.find((cart) => cart.id === newItem.id);
+    const isFound = cart.find((cart) => cart._id === newItem._id);
     if (!isFound) {
       setCart([...cart, newItem]);
     } else {
-     
       setCart(
         cart.map((obj) =>
-          obj.id === newItem.id ? { ...obj, qty: obj.qty + newItem.qty } : obj
+          obj._id === newItem._id ? { ...obj, qty: obj.qty + newItem.qty } : obj
         )
       );
     }

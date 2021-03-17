@@ -30,6 +30,7 @@ export default function Cart() {
 
   return (
     <CartContainer className="cart">
+      {console.log({ cart })}
       <div>
         <h2>cart component</h2>
       </div>
@@ -38,8 +39,8 @@ export default function Cart() {
         <div className="qty">Quantity</div>
       </ProductRow>
       {cart.map((item) => (
-        <ProductRow className="productRow" key={item.id}>
-          <div className="pName">{item.productName}</div>
+        <ProductRow className="productRow" key={item._id}>
+          <div className="pName">{item.name}</div>
           <div className="qty"> {item.qty}</div>
         </ProductRow>
       ))}

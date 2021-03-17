@@ -92,8 +92,7 @@ export default function IndividualItemCard({ item }) {
             <button
               onClick={() =>
                 addItemToCart({
-                  id: item._id,
-                  productName: item.name,
+                  ...item,
                   qty: 1,
                 })
               }
