@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../context/CartContext';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -74,11 +74,20 @@ export default function IndividualItemCard({ item }) {
   const { addItemToCart, cart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
 
+  const [available, setAvailable] = useState(0);
+
+  useEffect(() => {
+    const pageItem = cart.filter((cartItem) => cartItem._id === item._id);
+    console.log('stock', pageItem[0]?.stockCount, 'qty', pageItem[0]?.qty);
+    setAvailable(pageItem[0]?.stockCount - pageItem[0]?.qty);
+  }, [cart]);
+
   return (
     <CardContainer>
       {item ? (
         <>
           <ImageDiv>
+            {console.log(item)}
             <img src={item.imageUrl} alt={item.name} />
           </ImageDiv>
           <CardStyled>
@@ -87,8 +96,8 @@ export default function IndividualItemCard({ item }) {
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
-            <p>Already in cart: {inPageCart}</p>
-            <p>{item.stockCount} in stock </p>
+            <p>Already in cart: {pageItem[0]?.qty}</p>
+            <p>{available} in stock </p>
             <button
               onClick={() =>
                 addItemToCart({
