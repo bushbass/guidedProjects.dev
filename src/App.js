@@ -7,6 +7,7 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Deals from './pages/Deals';
 import Item from './pages/Item';
+import TestPage from './pages/TestPage';
 
 export default function App() {
   useEffect(() => {
@@ -60,6 +61,9 @@ export default function App() {
               </Route>
               <Route path="/item/:id">
                 <Item itemList={itemList} />
+              </Route>
+              <Route path="/test">
+                <TestPage />
               </Route>
               <Route path="/">
                 <Home itemList={itemList} />
