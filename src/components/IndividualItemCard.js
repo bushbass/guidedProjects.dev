@@ -73,21 +73,26 @@ const OnSale = styled.div`
 export default function IndividualItemCard({ item }) {
   const { addItemToCart, cart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
-
+  const [disableButton, setDisableButton] = useState(false);
   const [available, setAvailable] = useState(0);
 
   useEffect(() => {
-    const pageItem = cart.filter((cartItem) => cartItem._id === item._id);
-    console.log('stock', pageItem[0]?.stockCount, 'qty', pageItem[0]?.qty);
-    setAvailable(pageItem[0]?.stockCount - pageItem[0]?.qty);
-  }, [cart]);
+    const itemInCart = cart.filter((cartItem) => cartItem._id === item?._id)[0];
+    // itemInCart should probably use slice instead of filter, works for now
+    console.log('item in cart', itemInCart, 'props.item', item);
+    if (item) setAvailable(item.stockCount);
+    if (itemInCart) {
+      setAvailable(itemInCart?.stockCount - itemInCart?.qty);
+      setInPageCart(itemInCart?.qty);
+      if (available <= 1) setDisableButton(true);
+    }
+  }, [cart, item]);
 
   return (
     <CardContainer>
       {item ? (
         <>
           <ImageDiv>
-            {console.log(item)}
             <img src={item.imageUrl} alt={item.name} />
           </ImageDiv>
           <CardStyled>
@@ -96,9 +101,10 @@ export default function IndividualItemCard({ item }) {
             <p className="description">{item.description}</p>
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
-            <p>Already in cart: {pageItem[0]?.qty}</p>
+            <p>Already in cart: {inPageCart}</p>
             <p>{available} in stock </p>
             <button
+              disabled={disableButton}
               onClick={() =>
                 addItemToCart({
                   ...item,
