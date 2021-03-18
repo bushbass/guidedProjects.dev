@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import CartContext from '../context/CartContext';
 
 const CartContainer = styled.div`
@@ -23,6 +24,12 @@ const ProductRow = styled.div`
   .qty {
     place-self: end;
   }
+  a {
+    color: black;
+  }
+  .tableHeader {
+    font-weight: bold;
+  }
 `;
 
 export default function Cart() {
@@ -35,12 +42,14 @@ export default function Cart() {
         <h2>cart component</h2>
       </div>
       <ProductRow className="productRow">
-        <div className="pName">Product Name</div>
-        <div className="qty">Quantity</div>
+        <div className="pName tableHeader">Product Name</div>
+        <div className="qty tableHeader">Quantity</div>
       </ProductRow>
       {cart.map((item) => (
         <ProductRow className="productRow" key={item._id}>
-          <div className="pName">{item.name}</div>
+          <div className="pName">
+            <Link to={`/item/${item._id}`}>{item.name} </Link>
+          </div>
           <div className="qty"> {item.qty}</div>
         </ProductRow>
       ))}
