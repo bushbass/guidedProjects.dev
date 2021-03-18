@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../context/CartContext';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -73,6 +73,20 @@ const OnSale = styled.div`
 export default function IndividualItemCard({ item }) {
   const { addItemToCart, cart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
+  const [disableButton, setDisableButton] = useState(false);
+  const [available, setAvailable] = useState(0);
+
+  useEffect(() => {
+    const itemInCart = cart.filter((cartItem) => cartItem._id === item?._id)[0];
+    // itemInCart should probably use slice instead of filter, works for now
+    console.log('item in cart', itemInCart, 'props.item', item);
+    if (item) setAvailable(item.stockCount);
+    if (itemInCart) {
+      setAvailable(itemInCart?.stockCount - itemInCart?.qty);
+      setInPageCart(itemInCart?.qty);
+      if (available <= 1) setDisableButton(true);
+    }
+  }, [cart, item]);
 
   return (
     <CardContainer>
@@ -88,12 +102,12 @@ export default function IndividualItemCard({ item }) {
             <p className="price">${item.price}</p>
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
-            <p>{item.stockCount} in stock </p>
+            <p>{available} in stock </p>
             <button
+              disabled={disableButton}
               onClick={() =>
                 addItemToCart({
-                  id: item._id,
-                  productName: item.name,
+                  ...item,
                   qty: 1,
                 })
               }
