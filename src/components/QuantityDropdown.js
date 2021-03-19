@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-function TestPage(inStockValue) {
-  const total = 3;
-  const [newArr, setNewArr] = useState([...Array(total).keys()]);
+function QuantityDropdown({ inStockValue }) {
+  const total = 5;
+  const [newArr, setNewArr] = useState([...Array(inStockValue).keys()]);
   const [qtyDropdown, setQtyDropdown] = useState(1);
   function handleDropdownChange(e) {
     setQtyDropdown(e.target.value);
   }
   return (
     <div>
-      <label htmlFor="qtyDropdown">Quantity:</label>
+      <label htmlFor="qtyDropdown">Quantity to add:</label>
       <select
-        value={qtyDropdown}
+        value={inStockValue}
         onChange={handleDropdownChange}
         name="qtyDropdown"
-        id="qtyDropdown"
       >
         {newArr.map((item) => (
           <option value={item + 1}>{item + 1}</option>
@@ -25,4 +24,4 @@ function TestPage(inStockValue) {
   );
 }
 
-export default TestPage;
+export default QuantityDropdown;

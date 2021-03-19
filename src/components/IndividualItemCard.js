@@ -3,6 +3,7 @@ import CartContext from '../context/CartContext';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Rating from './Rating';
+import QuantityDropdown from './QuantityDropdown';
 
 const CardContainer = styled.div`
   display: flex;
@@ -103,6 +104,8 @@ export default function IndividualItemCard({ item }) {
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
             <p>{available} in stock </p>
+            {console.log(typeof available)}
+            <QuantityDropdown inStockValue={available} />
             <button
               disabled={disableButton}
               onClick={() =>
