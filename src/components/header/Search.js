@@ -21,20 +21,24 @@ const SearchBar = styled.div`
 export default function Search({ item }) {
   const { cart } = useContext(CartContext);
   const [inputText, setInputText] = useState('');
+  const [searchResult, setSearchResult] = useState('');
 
   function handleInputChange(event) {
     return setInputText(event.target.value);
   }
 
   function onSearch(searchTerm, event) {
-    console.log({ cart });
-    console.log({ searchTerm });
-    console.log(
-      cart.filter((item) => {
-        console.log(item.name.toLowerCase());
-        return item.name.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    );
+    const result = cart.filter((item) => {
+      console.log(item.name.toLowerCase());
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    console.log({ result });
+    if (result !== '') {
+      setSearchResult(result);
+    }
+    if (result === '') {
+      setSearchResult([{ name: 'Nothing returned from search' }]);
+    }
   }
   function handleSubmit(event) {
     event.preventDefault();
@@ -42,6 +46,7 @@ export default function Search({ item }) {
   }
   return (
     <SearchBar>
+      {console.log('search', searchResult)}
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type="text"
