@@ -79,8 +79,8 @@ export default function IndividualItemCard({ item }) {
 
   useEffect(() => {
     const itemInCart = cart.filter((cartItem) => cartItem._id === item?._id)[0];
-    // itemInCart should probably use slice instead of filter, works for now
-    console.log('item in cart', itemInCart, 'props.item', item);
+    // finds this page's item if it is in the cart
+    // should probably use slice instead of filter, but works for now
     if (item) setAvailable(item.stockCount);
     if (itemInCart) {
       setAvailable(itemInCart?.stockCount - itemInCart?.qty);
@@ -104,7 +104,7 @@ export default function IndividualItemCard({ item }) {
             {item.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
             <p>{available} in stock </p>
-            {console.log(typeof available)}
+
             <QuantityDropdown inStockValue={available} />
             <button
               disabled={disableButton}
