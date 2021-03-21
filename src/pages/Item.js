@@ -7,11 +7,6 @@ export default function Item({ itemList }) {
 
   const [individualItem, setIndividualItem] = useState();
 
-  useEffect(() => {
-    const [tempItem] = itemList.filter((item) => item._id === id);
-    setIndividualItem(tempItem);
-  }, [itemList]);
-
   return (
     <div className="item">
       <div>
