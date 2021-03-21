@@ -15,7 +15,7 @@ export default function Item({ itemList }) {
   return (
     <div className="item">
       <div>
-        <IndividualItemCard item={individualItem} />
+        <IndividualItemCard id={id} />
       </div>
     </div>
   );
