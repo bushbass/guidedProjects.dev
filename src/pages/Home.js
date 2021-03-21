@@ -9,12 +9,12 @@ const HomeContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
 `;
 
-export default function Home({ itemList }) {
+export default function Home({ allItemsList }) {
   return (
     <div className="home">
       <h2>Home page!</h2>
       <HomeContainer>
-        {itemList.map((item) => (
+        {allItemsList.map((item) => (
           <ItemCard key={item._id} item={item} />
         ))}
       </HomeContainer>
