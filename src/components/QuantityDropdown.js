@@ -19,6 +19,7 @@ function QuantityDropdown({ inStockValue }) {
     <div>
       <label htmlFor="qtyDropdown">Quantity to add:</label>
       <select
+        style={{ marginLeft: '1rem', padding: '.3rem' }}
         value={qtyDropdown}
         onChange={handleDropdownChange}
         name="qtyDropdown"
