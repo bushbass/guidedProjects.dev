@@ -47,6 +47,7 @@ export const CardStyled = styled.div`
     background: orange;
     border: none;
     padding: 7px;
+    margin-top: 1rem;
     width: 200px;
     border-radius: 5px;
     color: white;

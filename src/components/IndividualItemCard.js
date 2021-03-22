@@ -47,7 +47,7 @@ export default function IndividualItemCard({ id }) {
             <p>Already in cart: {inPageCart}</p>
             <p>{pageItem.stockCount} in stock </p>
 
-            <QuantityDropdown inStockValue={pageItem.stockCount + 1} />
+            <QuantityDropdown inStockValue={pageItem.stockCount} />
             <button
               disabled={disableButton}
               onClick={() =>
