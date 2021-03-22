@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ItemCard from '../components/ItemCard';
 
@@ -10,21 +11,22 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 `;
 
-export default function Deal({ itemList }) {
-  const dealFilter = itemList.filter((item) => item.isOnSale === true);
-
-  if (dealFilter.length === 0)
-    return <p>There are no on sale items at this time</p>;
+export default function Deal() {
+  const [deals, setDeals] = useState([]);
+  useEffect(() => {
+    fetch(`https://gp-super-store-api.herokuapp.com/item/list?isOnSale=true`)
+      .then((res) => res.json())
+      .then((data) => setDeals(data));
+  }, []);
+  if (!deals) return <p>There are no on sale items at this time</p>;
 
   return (
     <div className="home">
-      <h2>Home page</h2>
+      <h2>Deals page</h2>
       <Container>
-        {itemList
-          .filter((item) => item.isOnSale === true)
-          .map((item) => (
-            <ItemCard key={item._id} item={item} />
-          ))}
+        {deals?.items?.map((item) => (
+          <ItemCard key={item._id} item={item} />
+        ))}
       </Container>
     </div>
   );

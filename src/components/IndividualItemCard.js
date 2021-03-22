@@ -34,6 +34,7 @@ export default function IndividualItemCard({ id }) {
     <CardContainer>
       {pageItem ? (
         <>
+          {console.log('page item', pageItem)}
           <ImageDiv>
             <img src={pageItem.imageUrl} alt={pageItem.name} />
           </ImageDiv>
@@ -44,14 +45,14 @@ export default function IndividualItemCard({ id }) {
             <p className="price">${pageItem.price}</p>
             {pageItem.isOnSale && <OnSale>On sale</OnSale>}
             <p>Already in cart: {inPageCart}</p>
-            <p>{available} in stock </p>
+            <p>{pageItem.stockCount} in stock </p>
 
-            <QuantityDropdown inStockValue={available} />
+            <QuantityDropdown inStockValue={pageItem.stockCount} />
             <button
               disabled={disableButton}
               onClick={() =>
                 addItemToCart({
-                  ...item,
+                  ...pageItem,
                   qty: 1,
                 })
               }
