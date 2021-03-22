@@ -1,15 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import CartContext from '../context/CartContext';
 import PropTypes from 'prop-types';
 import Rating from './Rating';
 import QuantityDropdown from './QuantityDropdown';
 import { CardContainer, ImageDiv, CardStyled, OnSale } from '../styles';
 
 export default function IndividualItemCard({ id }) {
-  const { addItemToCart, cart } = useContext(CartContext);
   const [inPageCart, setInPageCart] = useState(0);
-  const [disableButton, setDisableButton] = useState(false);
-  const [available, setAvailable] = useState(0);
   const [pageItem, setPageItem] = useState({});
 
   useEffect(() => {
@@ -17,18 +13,6 @@ export default function IndividualItemCard({ id }) {
       .then((res) => res.json())
       .then((item) => setPageItem(item));
   }, []);
-
-  // useEffect(() => {
-  //   const itemInCart = cart.filter((cartItem) => cartItem._id === item?._id)[0];
-  //   // finds this page's item if it is in the cart
-  //   // should probably use slice instead of filter, but works for now
-  //   if (item) setAvailable(item.stockCount);
-  //   if (itemInCart) {
-  //     setAvailable(itemInCart?.stockCount - itemInCart?.qty);
-  //     setInPageCart(itemInCart?.qty);
-  //     if (available <= 1) setDisableButton(true);
-  //   }
-  // }, [cart]);
 
   return (
     <CardContainer>
@@ -47,18 +31,10 @@ export default function IndividualItemCard({ id }) {
             <p>Already in cart: {inPageCart}</p>
             <p>{pageItem.stockCount} in stock </p>
 
-            <QuantityDropdown inStockValue={pageItem.stockCount} />
-            <button
-              disabled={disableButton}
-              onClick={() =>
-                addItemToCart({
-                  ...pageItem,
-                  qty: 1,
-                })
-              }
-            >
-              Add to Cart
-            </button>
+            <QuantityDropdown
+              inStockValue={pageItem.stockCount}
+              pageItem={pageItem}
+            />
           </CardStyled>
         </>
       ) : (

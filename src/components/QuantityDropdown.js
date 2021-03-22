@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import CartContext from '../context/CartContext';
 
-function QuantityDropdown({ inStockValue }) {
+function QuantityDropdown({ inStockValue, pageItem }) {
   const [qtyDropdown, setQtyDropdown] = useState(1);
   const [quantityArr, setQuantityArr] = useState([]);
+  const [disableButton, setDisableButton] = useState(false);
+  const { addItemToCart, cart } = useContext(CartContext);
 
   useEffect(() => {
     let tempArr = [];
@@ -30,6 +33,17 @@ function QuantityDropdown({ inStockValue }) {
           </option>
         ))}
       </select>
+      <button
+        disabled={disableButton}
+        onClick={() =>
+          addItemToCart({
+            ...pageItem,
+            qty: parseInt(qtyDropdown),
+          })
+        }
+      >
+        Add to Cart
+      </button>
     </div>
   );
 }
