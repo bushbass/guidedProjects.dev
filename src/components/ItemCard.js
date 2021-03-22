@@ -28,6 +28,15 @@ const CardStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .productName {
+    font-size: 1rem;
+  }
+  a {
+    color: black;
+  }
+  a:hover {
+    transform: none;
+  }
 `;
 const OnSale = styled.div`
   background: red;
@@ -43,7 +52,9 @@ export default function ItemCard({ item }) {
     <CardContainer>
       <CardStyled>
         <img src={imageUrl} alt={name} />
-        <p>{name}</p>
+        <Link to={`/item/${_id}`}>
+          <p className="productName">{name}</p>
+        </Link>
         <Rating height={'30px'} stars={avgRating} />
         <p>${price}</p>
         {isOnSale && <OnSale>On sale</OnSale>}

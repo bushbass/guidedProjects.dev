@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function QuantityDropdown({ inStockValue }) {
-  const total = 5;
   const [qtyDropdown, setQtyDropdown] = useState(1);
+  const [stockArr, setStockArr] = useState((inStockValue) => {
+    let stock = [...Array(inStockValue).keys()];
+    stock.shift();
+    return stock;
+  });
+  const [stockValue, setStockValue] = useState(0);
 
   function handleDropdownChange(e) {
     setQtyDropdown(e.target.value);
   }
   return (
     <div>
-      {console.log(typeof inStockValue, inStockValue)}
+      {console.log(stockArr)}
       <label htmlFor="qtyDropdown">Quantity to add:</label>
       <select
-        value={inStockValue}
+        value={qtyDropdown}
         onChange={handleDropdownChange}
         name="qtyDropdown"
       >
-        {[...Array(inStockValue).keys()].map((item, id) => (
+        {stockArr.map((item, id) => (
           <option key={id} value={item + 1}>
             {item + 1}
           </option>

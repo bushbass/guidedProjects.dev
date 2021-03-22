@@ -34,7 +34,7 @@ export default function IndividualItemCard({ id }) {
     <CardContainer>
       {pageItem ? (
         <>
-          {console.log('page item', pageItem)}
+          {/* {console.log('page item', pageItem)} */}
           <ImageDiv>
             <img src={pageItem.imageUrl} alt={pageItem.name} />
           </ImageDiv>

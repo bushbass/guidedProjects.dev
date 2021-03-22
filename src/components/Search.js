@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import CartContext from '../../context/CartContext';
+import CartContext from '../context/CartContext';
 import { useContext, useState } from 'react';
 
 const SearchBar = styled.div`
   background: gray;
-  padding: 10px;
+  padding: 1rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

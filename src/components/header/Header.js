@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
-import Search from './Search';
 
 export default function Header() {
   return (
@@ -11,7 +10,6 @@ export default function Header() {
         </Link>
         <Nav />
       </header>
-      <Search />
     </>
   );
 }
