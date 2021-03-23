@@ -49,13 +49,15 @@ export default function Search({ item }) {
     <SearchBar>
       {console.log('search', searchResult)}
       <form onSubmit={(event) => handleSubmit(event)}>
-        <input
-          type="text"
-          placeholder="Search"
-          onChange={handleInputChange}
-          value={inputText}
-        />
-        <button>Search</button>
+        <div>
+          <input
+            type="search"
+            placeholder="Search"
+            onChange={handleInputChange}
+            value={inputText}
+          />
+          <button>Search</button>
+        </div>
       </form>
     </SearchBar>
   );

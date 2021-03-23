@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
+import styled from 'styled-components';
 import CartContext from '../context/CartContext';
 
-function QuantityDropdown({ inStockValue, pageItem }) {
+function QuantityDropdown({ pageItem }) {
   const [qtyDropdown, setQtyDropdown] = useState(1);
   const [quantityArr, setQuantityArr] = useState([]);
   const [disableButton, setDisableButton] = useState(false);
@@ -9,17 +10,27 @@ function QuantityDropdown({ inStockValue, pageItem }) {
 
   useEffect(() => {
     let tempArr = [];
-    for (let i = 1; i <= inStockValue; i++) {
+    for (let i = 1; i <= pageItem.stockCount; i++) {
       tempArr.push(i);
     }
     setQuantityArr(tempArr);
-  }, [inStockValue]);
+  }, [pageItem.stockCount]);
 
   function handleDropdownChange(e) {
     setQtyDropdown(e.target.value);
   }
+
+  const DropdownAndButton = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    label {
+      margin-bottom: 1rem;
+    }
+  `;
+
   return (
-    <div>
+    <DropdownAndButton>
       <label htmlFor="qtyDropdown">Quantity to add:</label>
       <select
         style={{ marginLeft: '1rem', padding: '.3rem' }}
@@ -44,7 +55,7 @@ function QuantityDropdown({ inStockValue, pageItem }) {
       >
         Add to Cart
       </button>
-    </div>
+    </DropdownAndButton>
   );
 }
 
