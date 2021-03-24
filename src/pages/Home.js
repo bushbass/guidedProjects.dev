@@ -15,7 +15,7 @@ const HomeContainer = styled.div`
 
 export default function Home({ allItemsList }) {
   const [apiData, setApiData] = useState({});
-  const [pageCount, setPageCount] = useState(3);
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     fetch(
       `https://gp-super-store-api.herokuapp.com/item/list?from=${pageCount}&size=2`
@@ -27,9 +27,11 @@ export default function Home({ allItemsList }) {
   return (
     <div className="home">
       <Search />
-      {console.log(apiData)}
+
       <h2>Check out all of our great products!</h2>
+
       <Pagination
+        next={apiData.next}
         total={apiData.total}
         setPageCount={setPageCount}
         pageCount={pageCount}
