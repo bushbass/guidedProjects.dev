@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
 
 function Pagination({ setPageCount, total, pageCount, next }) {
   return (
     <div>
-      <button onClick={() => setPageCount(0)}>First</button>
-      <button onClick={() => setPageCount(pageCount - 2)}>&lt;</button>
+      {console.log("next", next < 4)}
+      <button disabled={next < 4} onClick={() => setPageCount(0)}>
+        First
+      </button>
+      <button disabled={next < 4} onClick={() => setPageCount(pageCount - 2)}>
+        &lt;
+      </button>
       <span>
         {pageCount / 2 + 1} of {Math.ceil(total / 2)}
       </span>
-      {console.log(next)}
+
       <button disabled={!next} onClick={() => setPageCount(pageCount + 2)}>
         &gt;
       </button>

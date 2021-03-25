@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import ItemCard from '../components/ItemCard';
-import Pagination from '../components/Pagination';
-import Search from '../components/Search';
-import { useEffect, useState } from 'react';
+import styled from "styled-components";
+import ItemCard from "../components/ItemCard";
+import Pagination from "../components/Pagination";
+import Search from "../components/Search";
+import { useEffect, useState } from "react";
 
 const HomeContainer = styled.div`
   display: grid;
@@ -29,7 +29,7 @@ export default function Home({ allItemsList }) {
       <Search />
 
       <h2>Check out all of our great products!</h2>
-
+      {console.log("data from home.js", apiData)}
       <Pagination
         next={apiData.next}
         total={apiData.total}

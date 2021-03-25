@@ -47,7 +47,7 @@ export default function Search({ item }) {
   }
   return (
     <SearchBar>
-      {console.log('search', searchResult)}
+      {/* {console.log('search', searchResult)} */}
       <form onSubmit={(event) => handleSubmit(event)}>
         <div>
           <input
