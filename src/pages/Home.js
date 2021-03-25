@@ -27,7 +27,7 @@ export default function Home({ allItemsList }) {
   return (
     <div className="home">
       <Search />
-
+      {console.log(apiData)}
       <h2>Check out all of our great products!</h2>
 
       <Pagination
