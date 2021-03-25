@@ -16,13 +16,14 @@ const HomeContainer = styled.div`
 export default function Home({ allItemsList }) {
   const [apiData, setApiData] = useState({});
   const [pageCount, setPageCount] = useState(0);
+  const [pageSize, setPageSize] = useState(2);
   useEffect(() => {
     fetch(
-      `https://gp-super-store-api.herokuapp.com/item/list?from=${pageCount}&size=2`
+      `https://gp-super-store-api.herokuapp.com/item/list?from=${pageCount}&size=${pageSize}`
     )
       .then((res) => res.json())
       .then((data) => setApiData(data));
-  }, [pageCount]);
+  }, [pageCount, pageSize]);
 
   return (
     <div className="home">
@@ -35,6 +36,8 @@ export default function Home({ allItemsList }) {
         total={apiData.total}
         setPageCount={setPageCount}
         pageCount={pageCount}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
       ></Pagination>
       <HomeContainer>
         {apiData?.items?.map((item) => (
