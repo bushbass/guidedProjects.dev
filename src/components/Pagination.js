@@ -40,7 +40,7 @@ function Pagination({
           Last
         </button>
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="pageSize">Items per page</label>
         <input
           id="pageSize"
@@ -48,7 +48,7 @@ function Pagination({
           onChange={handlePageSizeChange}
           type="number"
         />
-      </div>
+      </div> */}
     </>
   );
 }
