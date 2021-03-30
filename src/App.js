@@ -7,16 +7,18 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Deals from './pages/Deals';
 import Item from './pages/Item';
+import TestPage from './pages/TestPage';
 
 export default function App() {
   useEffect(() => {
     fetch('https://gp-super-store-api.herokuapp.com/item/list')
       .then((res) => res.json())
-      .then((data) => setitemList(data.items));
+      .then((data) => setAllitemsList(data.items));
   }, []);
-  const [itemList, setitemList] = useState([]);
+  const [allItemsList, setAllitemsList] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+
   useEffect(() => {
     setCartTotal(getTotalCartItems(cart));
   }, [cart]);
@@ -46,23 +48,26 @@ export default function App() {
   return (
     <div className="App">
       <CartContext.Provider
-        value={{ cart, setCart, cartTotal, addItemToCart, itemList }}
+        value={{ cart, setCart, cartTotal, addItemToCart, allItemsList }}
       >
         <Router>
           <div>
             <Header />
             <Switch>
               <Route path="/deals">
-                <Deals itemList={itemList} />
+                <Deals />
               </Route>
               <Route path="/cart">
                 <Cart />
               </Route>
               <Route path="/item/:id">
-                <Item itemList={itemList} />
+                <Item />
+              </Route>
+              <Route path="/test">
+                <TestPage />
               </Route>
               <Route path="/">
-                <Home itemList={itemList} />
+                <Home allItemsList={allItemsList} />
               </Route>
             </Switch>
           </div>
