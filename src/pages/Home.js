@@ -38,7 +38,8 @@ export default function Home({ allItemsList }) {
         pageCount={pageCount}
         pageSize={pageSize}
         setPageSize={setPageSize}
-      ></Pagination>
+      />
+
       <HomeContainer>
         {apiData?.items?.map((item) => (
           <ItemCard key={item._id} item={item} />
