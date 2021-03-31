@@ -1,5 +1,8 @@
 import React from 'react';
-
+import styled from 'styled-components';
+const Button = styled.button`
+  margin: 3px;
+`;
 function Pagination({
   setPageSize,
   pageSize,
@@ -17,28 +20,28 @@ function Pagination({
     <>
       <div>
         {console.log({ total })}
-        <button
+        <Button
           disabled={next >= 0 && next < 4 && next !== null}
           onClick={() => setPageCount(0)}
         >
           First
-        </button>
-        <button
+        </Button>
+        <Button
           disabled={next >= 0 && next < 4 && next !== null}
           onClick={() => setPageCount(pageCount - 2)}
         >
           &lt;
-        </button>
+        </Button>
         <span>
           {pageCount / 2 + 1} of {Math.ceil(total / 2)}
         </span>
 
-        <button disabled={!next} onClick={() => setPageCount(pageCount + 2)}>
+        <Button disabled={!next} onClick={() => setPageCount(pageCount + 2)}>
           &gt;
-        </button>
-        <button disabled={!next} onClick={() => setPageCount(total - 1)}>
+        </Button>
+        <Button disabled={!next} onClick={() => setPageCount(total - 1)}>
           Last
-        </button>
+        </Button>
       </div>
       {/* <div>
         <label htmlFor="pageSize">Items per page</label>
