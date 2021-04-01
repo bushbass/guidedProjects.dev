@@ -23,13 +23,19 @@ function Pagination({
           {console.log({ total })}
           <Button
             disabled={next >= 0 && next < 4 && next !== null}
-            onClick={() => setPageCount(0)}
+            onClick={() => {
+              setPageCount(0);
+              window.scrollTo(0, 0);
+            }}
           >
             First
           </Button>
           <Button
             disabled={next >= 0 && next < 4 && next !== null}
-            onClick={() => setPageCount(pageCount - 2)}
+            onClick={() => {
+              setPageCount(pageCount - 2);
+              window.scrollTo(0, 0);
+            }}
           >
             &lt;
           </Button>
@@ -37,10 +43,22 @@ function Pagination({
             {pageCount / 2 + 1} of {Math.ceil(total / 2)}
           </span>
 
-          <Button disabled={!next} onClick={() => setPageCount(pageCount + 2)}>
+          <Button
+            disabled={!next}
+            onClick={() => {
+              setPageCount(pageCount + 2);
+              window.scrollTo(0, 0);
+            }}
+          >
             &gt;
           </Button>
-          <Button disabled={!next} onClick={() => setPageCount(total - 1)}>
+          <Button
+            disabled={!next}
+            onClick={() => {
+              setPageCount(total - 1);
+              window.scrollTo(0, 0);
+            }}
+          >
             Last
           </Button>
         </div>

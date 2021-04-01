@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import ItemCard from '../components/ItemCard';
-import Pagination from '../components/Pagination';
-import Search from '../components/Search';
-import { useEffect, useState } from 'react';
+import styled from "styled-components";
+import ItemCard from "../components/ItemCard";
+import Pagination from "../components/Pagination";
+import Search from "../components/Search";
+import { useEffect, useState } from "react";
 
 const HomeContainer = styled.div`
   display: grid;
@@ -45,6 +45,14 @@ export default function Home({ allItemsList }) {
           <ItemCard key={item._id} item={item} />
         ))}
       </HomeContainer>
+      <Pagination
+        next={apiData.next}
+        total={apiData.total}
+        setPageCount={setPageCount}
+        pageCount={pageCount}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+      />
     </div>
   );
 }

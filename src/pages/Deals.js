@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import ItemCard from '../components/ItemCard';
-import Pagination from '../components/Pagination';
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import ItemCard from "../components/ItemCard";
+import Pagination from "../components/Pagination";
 
 const Container = styled.div`
   display: grid;
@@ -25,8 +25,25 @@ export default function Deal() {
   }, [pageCount, pageSize]);
 
   return (
-    <div className="home">
-      <h2>Check out these amazing deals!</h2>
+    <>
+      <div className="home">
+        <h2>Check out these amazing deals!</h2>
+        <Pagination
+          next={deals.next}
+          total={deals.total}
+          setPageCount={setPageCount}
+          pageCount={pageCount}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+        />
+        <Container>
+          {!deals ? (
+            <p>There are no on sale items at this time</p>
+          ) : (
+            deals?.items?.map((item) => <ItemCard key={item._id} item={item} />)
+          )}
+        </Container>
+      </div>
       <Pagination
         next={deals.next}
         total={deals.total}
@@ -35,13 +52,6 @@ export default function Deal() {
         pageSize={pageSize}
         setPageSize={setPageSize}
       />
-      <Container>
-        {!deals ? (
-          <p>There are no on sale items at this time</p>
-        ) : (
-          deals?.items?.map((item) => <ItemCard key={item._id} item={item} />)
-        )}
-      </Container>
-    </div>
+    </>
   );
 }
