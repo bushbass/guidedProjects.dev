@@ -5,11 +5,11 @@ import Pagination from "../components/Pagination";
 
 const Container = styled.div`
   display: grid;
+  margin: 1rem 0 2rem 0;
   width: 80%;
-  padding-top: 1rem;
   align-items: start;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
 `;
 
 export default function Deal() {
